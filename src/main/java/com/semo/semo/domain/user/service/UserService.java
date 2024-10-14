@@ -1,6 +1,7 @@
 package com.semo.semo.domain.user.service;
 
 import com.semo.semo.domain.user.model.entity.User;
+import com.semo.semo.domain.user.model.request.UserLoginReq;
 import com.semo.semo.domain.user.model.request.UserSignupReq;
 import com.semo.semo.domain.user.model.response.UserSignupRes;
 import com.semo.semo.domain.user.repository.UserReposiotry;
@@ -19,6 +20,7 @@ public class UserService {
                 .pw(request.getPw())
                 .name(request.getName())
                 .nickname(request.getNickname())
+                .role(request.getRole())
                 .build();
 
         User result = userReposiotry.save(user);
