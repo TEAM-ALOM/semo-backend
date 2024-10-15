@@ -1,7 +1,6 @@
 package com.semo.semo.domain.user.service;
 
 import com.semo.semo.domain.user.model.entity.User;
-import com.semo.semo.domain.user.model.request.UserLoginReq;
 import com.semo.semo.domain.user.model.request.UserSignupReq;
 import com.semo.semo.domain.user.model.response.UserSignupRes;
 import com.semo.semo.domain.user.repository.UserReposiotry;
@@ -14,7 +13,10 @@ public class UserService {
     private final UserReposiotry userReposiotry;
 
     public UserSignupRes signup(UserSignupReq request){
-
+        // 중복 체크
+        if (userReposiotry.existsByUser_id(request.getUser_id())) {
+            throw new IllegalArgumentException("중복되는 ID입니다.");
+        }
         User user = User.builder()
                 .user_id(request.getUser_id())
                 .pw(request.getPw())
