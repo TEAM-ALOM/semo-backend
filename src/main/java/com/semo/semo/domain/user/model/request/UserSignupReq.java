@@ -2,7 +2,6 @@ package com.semo.semo.domain.user.model.request;
 
 import jakarta.persistence.Column;
 import lombok.Getter;
-import lombok.NonNull;
 
 @Getter
 public class UserSignupReq {
@@ -17,4 +16,7 @@ public class UserSignupReq {
 
     @Column(nullable = false)
     private String nickname;
+
+    @Column(nullable = false)
+    private String role;
 }
