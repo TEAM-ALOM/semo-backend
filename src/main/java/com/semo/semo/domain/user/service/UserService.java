@@ -13,12 +13,16 @@ public class UserService {
     private final UserReposiotry userReposiotry;
 
     public UserSignupRes signup(UserSignupReq request){
-
+        // 중복 체크
+        if (userReposiotry.existsByUser_id(request.getUser_id())) {
+            throw new IllegalArgumentException("중복되는 ID입니다.");
+        }
         User user = User.builder()
                 .user_id(request.getUser_id())
                 .pw(request.getPw())
                 .name(request.getName())
                 .nickname(request.getNickname())
+                .role(request.getRole())
                 .build();
 
         User result = userReposiotry.save(user);

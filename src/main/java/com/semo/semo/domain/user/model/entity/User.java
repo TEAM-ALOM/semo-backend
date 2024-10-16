@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-@Builder
+
 @Entity
 @NoArgsConstructor
 @Getter
@@ -28,15 +28,15 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
-    @Builder.Default
     private String role = "user";
 
     @Builder
-    public User(Long id,String user_id,String pw,String name,String nickname){
+    public User(Long id,String user_id,String pw,String name,String nickname,String role){
         this.id = id;
         this.user_id = user_id;
         this.pw = pw;
         this.name = name;
         this.nickname = nickname;
+        if(role != null) this.role = role;
     }
 }
