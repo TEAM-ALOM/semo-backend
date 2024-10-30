@@ -21,7 +21,7 @@ public class UserSignupRes {
     public UserSignupRes toDto(User user){
         return UserSignupRes.builder()
                 .id(user.getId())
-                .user_id(user.getUser_id())
+                .user_id(user.getUserId())
                 .pw(user.getPw())
                 .name(user.getName())
                 .nickname(user.getNickname())
