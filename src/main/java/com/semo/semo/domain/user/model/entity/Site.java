@@ -1,59 +1,27 @@
 package com.semo.semo.domain.user.model.entity;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Site {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //url, 사이트 이름, 사이트 설명
+
+    @Column(columnDefinition = "VARCHAR(255)")
     private String url;
+
+    @Column(columnDefinition = "VARCHAR(100)")
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String description;
-    //작성자 아이디
+
+    @Column(columnDefinition = "BIGINT")
     private Long userId;
 
-    //게터 세터
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    // 게터와 세터 메서드 생략됨 (Lombok이 자동 생성)
 }

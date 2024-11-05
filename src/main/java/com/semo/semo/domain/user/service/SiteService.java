@@ -2,6 +2,7 @@ package com.semo.semo.domain.user.service;
 
 import com.semo.semo.domain.user.model.entity.Site;
 import com.semo.semo.domain.user.repository.SiteRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +10,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class SiteService {
 
     private final SiteRepository siteRepository;
     //레포지 받아오기
-    @Autowired
-    public SiteService(SiteRepository siteRepository) {
-        this.siteRepository = siteRepository;
-    }
+
     //모든 사이트 보기
     public List<Site> getAllSites() {
         return siteRepository.findAll();
     }
     //id로 사이트 찾기 필요한가??
-    public Optional<Site> getSiteById(Long id) {
-        return siteRepository.findById(id);
+    public Site getSiteById(Long id) {
+        return siteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Site not found"));
     }
+
     //사이트 저장하기
     public Site saveSite(Site site) {
         return siteRepository.save(site);

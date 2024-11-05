@@ -27,8 +27,7 @@ public class SiteController {
     //특정 사이트의 정보를 가저오고, 그 url 이 /id 이다
     @GetMapping("/{id}")
     public Site getSiteById(@PathVariable Long id) {
-        return siteService.getSiteById(id)
-                .orElseThrow(() -> new RuntimeException("Site not found"));
+        return siteService.getSiteById(id);  // Optional 처리 없이 바로 Site 객체 반환
     }
     //사이트 저장
     @PostMapping
