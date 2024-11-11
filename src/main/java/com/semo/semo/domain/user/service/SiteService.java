@@ -2,14 +2,14 @@ package com.semo.semo.domain.user.service;
 
 import com.semo.semo.domain.user.model.entity.Site;
 import com.semo.semo.domain.user.repository.SiteRepository;
-import lombok.Builder;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
