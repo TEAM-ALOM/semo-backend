@@ -1,8 +1,11 @@
 package com.semo.semo.domain.user.model.entity;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+
+@NoArgsConstructor // 기본 생성자 추가 // 모든 필드를 포함한 생성자 추가
+@Builder
+@AllArgsConstructor
 @Entity
 @Getter
 @Setter
