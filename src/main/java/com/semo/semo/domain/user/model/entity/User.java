@@ -40,7 +40,6 @@ public class User implements UserDetails {
     public User(Long id, String userId, String pw, String name,String nickname,String role){
         this.id = id;
         this.userId = userId;
-        this.pw = pw;
         this.name = name;
         this.nickname = nickname;
         if(role != null) this.role = role;
@@ -55,7 +54,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return pw;
+        return "";
     }
 
     @Override
