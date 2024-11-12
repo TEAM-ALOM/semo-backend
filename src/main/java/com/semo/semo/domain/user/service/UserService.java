@@ -21,12 +21,12 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     public UserSignupRes signup(UserSignupReq request){
         // 중복 체크
-        userRepository.findByUserId(request.getUser_id())
+        userRepository.findByUserId(request.getId())
                 .ifPresent(x ->{
                     throw new CustomException(ErrorCode.USER_ALREADY_EXISTS);
                 });
         User user = User.builder()
-                .userId(request.getUser_id())
+                .userId(request.getId())
                 .pw(passwordEncoder.encode(request.getPw()))
                 .name(request.getName())
                 .nickname(request.getNickname())
