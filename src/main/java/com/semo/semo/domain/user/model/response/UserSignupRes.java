@@ -11,8 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class UserSignupRes {
-    private Long id;
-    private String user_id;
+    private String id;
     private String pw;
     private String name;
     private String nickname;
@@ -20,9 +19,7 @@ public class UserSignupRes {
 
     public UserSignupRes toDto(User user){
         return UserSignupRes.builder()
-                .id(user.getId())
-                .user_id(user.getUserId())
-                .pw(user.getPw())
+                .id(user.getUserId())
                 .name(user.getName())
                 .nickname(user.getNickname())
                 .role(user.getRole())

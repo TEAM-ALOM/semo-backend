@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class UserSignupReq {
     @Column(nullable = false)
-    private String user_id;
+    private String id;
 
     @Column(nullable = false)
     private String pw;
