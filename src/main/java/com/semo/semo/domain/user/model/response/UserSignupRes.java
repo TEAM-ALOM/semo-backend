@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UserSignupRes {
     private String id;
-    private String pw;
     private String name;
     private String nickname;
     private String role;
