@@ -37,7 +37,7 @@ public class User implements UserDetails {
     private String role = "ROLE_USER";
 
     @Builder
-    public User(Long id, String userId, String pw, String name,String nickname,String role){
+    public User(Long id, String userId, String name,String nickname,String role){
         this.id = id;
         this.userId = userId;
         this.name = name;
