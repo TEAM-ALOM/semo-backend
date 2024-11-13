@@ -1,6 +1,8 @@
 package com.semo.semo.domain.user.controller;
 
+import com.semo.semo.domain.user.model.request.UserLoginReq;
 import com.semo.semo.domain.user.model.request.UserSignupReq;
+import com.semo.semo.domain.user.model.response.UserLoginRes;
 import com.semo.semo.domain.user.model.response.UserSignupRes;
 import com.semo.semo.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,4 +21,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.signup(request));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq request){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.login(request));
+    }
 }
