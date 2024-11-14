@@ -23,16 +23,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "varchar", length = 30)
+    @Column(nullable = false, columnDefinition = "varchar(30)")
     private String userId;
 
-    @Column(nullable = false, columnDefinition = "varchar", length = 15)
+    @Column(nullable = false, columnDefinition = "varchar(15)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "varchar", length = 30)
+    @Column(nullable = false, columnDefinition = "varchar(30)")
     private String nickname;
 
-    @Column(nullable = false, columnDefinition = "varchar", length = 30)
+    @Column(nullable = false, columnDefinition = "varchar(30)")
     private String role = "ROLE_USER";
 
     @Column(name = "refresh_token", columnDefinition = "text")
@@ -42,8 +42,11 @@ public class User implements UserDetails {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Column(name="major", columnDefinition = "varchar(30)", nullable = false)
+    private String major;
+
     @Builder
-    public User(Long id, String userId, String name,String nickname,String role, String refreshToken, LocalDateTime createdAt){
+    public User(Long id, String userId, String name,String nickname,String role, String refreshToken, LocalDateTime createdAt, String major){
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -51,6 +54,7 @@ public class User implements UserDetails {
         if(role != null) this.role = role;
         this.refreshToken = refreshToken;
         this.createdAt = createdAt;
+        this.major = major;
     }
 
     @Override
