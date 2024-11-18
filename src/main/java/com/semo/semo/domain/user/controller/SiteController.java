@@ -54,7 +54,7 @@ public class SiteController {
     public ResponseEntity<List<SiteRes>> getAllSites() {
         List<Site> sites = siteService.getAllSites();
         List<SiteRes> siteResponses = sites.stream()
-                .map(SiteRes::toDto)
+                .map(site -> new SiteRes().toDto(site))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(siteResponses); // 200 OK 상태 코드와 데이터 반환
     }
@@ -63,7 +63,7 @@ public class SiteController {
     @GetMapping("/{id}")
     public ResponseEntity<SiteRes> getSiteById(@PathVariable Long id) {
         Site site = siteService.getSiteById(id);
-        SiteRes siteResponse = SiteRes.toDto(site);
+        SiteRes siteResponse = new SiteRes().toDto(site);
         return ResponseEntity.ok(siteResponse); // 200 OK 상태 코드와 데이터 반환
     }
 
@@ -71,7 +71,7 @@ public class SiteController {
     @PostMapping
     public ResponseEntity<SiteRes> saveSite(@RequestBody Site site) {
         Site savedSite = siteService.saveSite(site);
-        SiteRes siteResponse = SiteRes.toDto(savedSite);
+        SiteRes siteResponse = new SiteRes().toDto(savedSite);
         return new ResponseEntity<>(siteResponse, HttpStatus.CREATED); // 201 Created 상태 코드와 데이터 반환
     }
 
@@ -79,7 +79,7 @@ public class SiteController {
     @PutMapping("/{id}")
     public ResponseEntity<SiteRes> updateSite(@PathVariable Long id, @RequestBody Site updatedSite) {
         Site site = siteService.updateSite(id, updatedSite);
-        SiteRes siteResponse = SiteRes.toDto(site);
+        SiteRes siteResponse = new SiteRes().toDto(site);
         return ResponseEntity.ok(siteResponse); // 200 OK 상태 코드와 데이터 반환
     }
 

@@ -18,7 +18,7 @@ public class SiteRes {
     private Long userId;
 
     // Site 엔티티를 SiteRes DTO로 변환하는 메서드
-    public static SiteRes toDto(Site site) {
+    public SiteRes toDto(Site site) {
         return SiteRes.builder()
                 .id(site.getId())
                 .url(site.getUrl())
