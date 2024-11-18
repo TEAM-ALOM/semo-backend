@@ -21,8 +21,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.signup(request));
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq request){
-//        return ResponseEntity.status(HttpStatus.OK).body(userService.login(request));
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq request){
+        return ResponseEntity.status(HttpStatus.OK).body(userService.login(request));
+    }
 }
