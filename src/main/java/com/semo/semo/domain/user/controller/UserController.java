@@ -1,6 +1,8 @@
 package com.semo.semo.domain.user.controller;
 
+import com.semo.semo.domain.user.model.request.UserLoginReq;
 import com.semo.semo.domain.user.model.request.UserSignupReq;
+import com.semo.semo.domain.user.model.response.UserLoginRes;
 import com.semo.semo.domain.user.model.response.UserSignupRes;
 import com.semo.semo.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +17,12 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody UserSignupReq request){
-        try {
-            UserSignupRes signupRes = userService.signup(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body(signupRes);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Signup failed : " +e.getMessage());
-        }
-
+    public ResponseEntity<UserSignupRes> signup(@RequestBody UserSignupReq request){
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.signup(request));
     }
 
+//    @PostMapping("/login")
+//    public ResponseEntity<UserLoginRes> login(@RequestBody UserLoginReq request){
+//        return ResponseEntity.status(HttpStatus.OK).body(userService.login(request));
+//    }
 }
