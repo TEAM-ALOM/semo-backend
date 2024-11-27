@@ -15,10 +15,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.*;
 
@@ -105,22 +108,20 @@ public class UserService {
             Map<String, Object> result = (Map<String, Object>) responseBody.get("result");
             if (Boolean.TRUE.equals(result.get("is_auth"))) {
 
-//                 //성공 시 로그인 진행
-//                UsernamePasswordAuthenticationToken authenticationToken = new CustomUsernamePasswordAuthenticationToken(request.getId());
-//                authenticationToken.setAuthenticated(true);
-//                 //자격 증명 확인
-//                Authentication authenticate = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+                // 성공 시 SecurityContext에 인증 정보 설정
+                Authentication auth = new UsernamePasswordAuthenticationToken(
+                        user.getUserId(),
+                        null,
+                        user.getAuthorities()
+                );
 
-//                List<GrantedAuthority> authorities = new ArrayList<>();
-//                authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//
-//                authenticateWithoutPassword(request.getId(), authorities);
+                // 인증 정보를 SecurityContext에 저장하여, 이후 요청에서 인증된 사용자 정보로 처리
+                SecurityContextHolder.getContext().setAuthentication(auth);
 
-                String authToken = JwtUtils.generateRefreshToken(request.getId());
+                // JWT 토큰 생성
+                String authToken = JwtUtils.generateRefreshToken(user.getUserId());
 
-                // 인증된 사용자를 가져와 refreshToken을 저장
-//                User user = (User) authenticate.getPrincipal();
-
+                // Refresh 토큰 저장
                 user.setRefreshToken(authToken);
                 userRepository.save(user);
 
