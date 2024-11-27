@@ -9,5 +9,5 @@ public class UserSignupReq {
     private String pw;
     private String name;
     private String nickname;
-    private String role;
+
 }
