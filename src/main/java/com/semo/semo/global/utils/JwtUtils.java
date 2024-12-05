@@ -34,12 +34,12 @@ public class JwtUtils {
         JWT_SECRET_KEY = key;
     }
 
-    public static String generateAccessToken(String userId, List<String> roles){
+    public static String generateAccessToken(String userId, String role){
 
-        if (roles.contains("ROLE_ADMIN")){
+        if (role.contains("ADMIN")){
             return Jwts.builder()
                     .setSubject(userId)
-                    .claim("roles", roles)
+                    .claim("roles", role)
                     .setIssuedAt(new Date(System.currentTimeMillis()))
                     .setExpiration(new Date(System.currentTimeMillis() + 9999999999L))
                     .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
@@ -48,7 +48,7 @@ public class JwtUtils {
         else {
             return Jwts.builder()
                     .setSubject(userId)
-                    .claim("roles", roles)
+                    .claim("roles", role)
                     .setIssuedAt(new Date(System.currentTimeMillis()))
                     .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRATION_TIME))
                     .signWith(SignatureAlgorithm.HS512, JWT_SECRET_KEY)
@@ -64,10 +64,10 @@ public class JwtUtils {
                 .compact();
     }
 
-    public static AuthToken generateToken(String userId, List<String> roles) {
+    public static AuthToken generateToken(String userId, String role) {
         return AuthToken.builder()
                 .grantType("Bearer")
-                .accessToken(JwtUtils.generateAccessToken(userId, roles))
+                .accessToken(JwtUtils.generateAccessToken(userId, role))
                 .refreshToken(JwtUtils.generateRefreshToken(userId))
                 .build();
     }

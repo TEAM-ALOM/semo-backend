@@ -10,4 +10,6 @@ import lombok.Getter;
 public class UserLoginRes {
     private String id;
     private String nickname;
+    private String accessToken;
+    private String refreshToken;
 }
