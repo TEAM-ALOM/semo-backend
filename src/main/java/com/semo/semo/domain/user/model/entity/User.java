@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,6 +37,7 @@ public class User implements UserDetails {
     private String role = "ROLE_USER";
 
     @Column(name = "refresh_token", columnDefinition = "text")
+    @Setter
     private String refreshToken;
 
     @Column(name="created_at", columnDefinition = "timestamp", nullable = false)
